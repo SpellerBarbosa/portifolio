@@ -20,7 +20,7 @@ onMounted(() => {
 
 <template>
   <section
-    class="mt-[60px] w-screen text-[#f4f4f5] flex flex-col items-center tracking-[1.5px] font-semibold md:w-[70%] lg:w-[80%]"
+    class="mt-[60px] w-screen text-[#f4f4f5] flex flex-col items-center tracking-[1.5px] font-semibold md:w-[70%] lg:w-[50%]"
     data-aos="fade-up"
     id="habilidades"
   >
