@@ -1,49 +1,108 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onUnmounted } from "vue";
 
+const mobile = ref<boolean>(true);
+const nome = ref<string>("");
 const stateMenu = ref<boolean>(true);
 const menuRef = ref<HTMLElement | null>(null);
 
 const toogleMenu = () => {
-    stateMenu.value = !stateMenu.value;
-}
+  stateMenu.value = !stateMenu.value;
+};
 
 const handerClickOutSide = (Event: MouseEvent) => {
-    if (menuRef.value && !menuRef.value.contains(Event.target as Node)) {
-        stateMenu.value = true;
-    }
-}
+  if (menuRef.value && !menuRef.value.contains(Event.target as Node)) {
+    stateMenu.value = true;
+  }
+};
 
-onMounted(() => {
-    document.addEventListener('click', handerClickOutSide);
-});
+const checkWindowSize = () => {
+  mobile.value = window.innerWidth <= 768;
+  nome.value = mobile.value ? "F.B" : "Fernando Barbosa";
+};
 
-onUnmounted(() => {
-    document.removeEventListener('click', handerClickOutSide);
+watchEffect(() => {
+  onMounted(() => {
+    document.addEventListener("click", handerClickOutSide);
+    checkWindowSize();
+    window.addEventListener("resize", checkWindowSize);
+  });
+
+  onUnmounted(() => {
+    document.removeEventListener("click", handerClickOutSide);
+    window.removeEventListener("resize", checkWindowSize);
+  });
 });
 </script>
 
 <template>
-    <header class=" flex justify-between text-[#F4F4F5] w-screen  items-center font-inter fixed bg-[#171717]">
-        <div  ref="menuRef" class="relative z-10">
-            <button class="w-[50px] h-[50px] flex flex-col justify-evenly items-center cursor-pointer" @click.stop="toogleMenu()">
-            <span class="bg-[#f4f4f5] w-[90%] h-[2px] block transform transition-all duration-500"
-                :class="stateMenu ? '' : 'origin-center rotate-45 translate-y-3'"></span>
-            <span class="bg-[#f4f4f5] w-[90%] h-[2px] block transform transition-all duration-500"
-                :class="stateMenu ? '' : 'opacity-0'"></span>
-            <span class="bg-[#f4f4f5] w-[90%] h-[2px] block transform transition-all duration-500"
-                :class="stateMenu ? '' : 'origin-center -rotate-45 -translate-y-3'"></span>
-        </button>
-        <nav class="w-screen absolute top-[50px]" :class="!stateMenu ? 'flex flex-col max-h-max transition-all duration-700' : 'w-0 overflow-hidden opacity-0 transition-all duration-700 transform'">
-            <ul class="w-screen flex flex-col items-center bg-[#252525]">
-                <li class="w-[100%] text-center text-xl p-2 tracking-[2px] uppercase mb-0.5 hover:bg-[#202020] cursor-pointer">Inicio</li>
-                <li class="w-[100%] text-center text-xl p-2 tracking-[2px] uppercase mb-0.5 hover:bg-[#202020] cursor-pointer">Sobre</li>
-                <li class="w-[100%] text-center text-xl p-2 tracking-[2px] uppercase mb-0.5 hover:bg-[#202020] cursor-pointer">Skills</li>
-                <li class="w-[100%] text-center text-xl p-2 tracking-[2px] uppercase mb-0.5 hover:bg-[#202020] cursor-pointer">Projetos</li>
-                <li class="w-[100%] text-center text-xl p-2 tracking-[2px] uppercase mb-0.5 hover:bg-[#202020] cursor-pointer">Contato</li>
-            </ul>
-        </nav>
-        </div>
-        <h1 class="text-3xl font-bold tracking-[10px] mr-[50%] translate-x-[50%]">F.B</h1>
-    </header>
+  <header
+    :class="[
+      mobile
+        ? 'w-screen h-[60px] flex items-center justify-center text-[#f4f4f5] font-inter bg-[#1e293b] z-10 fixed'
+        : 'md:flex-row-reverse',
+      'w-screen h-[60px] flex flex-row-reverse justify-center items-center text-[#f4f4f5] uppercase tracking-[1px] md:justify-around bg-[#1e293b] fixed z-10 lg:h-[80px]',
+    ]"
+  >
+    <div ref="menuRef" class="flex">
+      <button
+        class="w-[50px] h-[50px] ml-4 flex flex-col justify-evenly items-center cursor-pointer absolute left-0 top-[50%] -translate-y-[50%] md:hidden"
+        @click.stop="toogleMenu()"
+      >
+        <span
+          class="bg-[#f4f4f5] w-[90%] h-[2px] block transform transition-all duration-500"
+          :class="stateMenu ? '' : 'origin-center rotate-45 translate-y-3'"
+        ></span>
+        <span
+          class="bg-[#f4f4f5] w-[90%] h-[2px] block transform transition-all duration-500"
+          :class="stateMenu ? '' : 'opacity-0'"
+        ></span>
+        <span
+          class="bg-[#f4f4f5] w-[90%] h-[2px] block transform transition-all duration-500"
+          :class="stateMenu ? '' : 'origin-center -rotate-45 -translate-y-3'"
+        ></span>
+      </button>
+      <nav
+        :class="
+          stateMenu
+            ? 'hidden md:flex md:flex-row'
+            : 'w-screen max-h-max flex flex-col bg-[#1e293b] absolute left-0 top-[60px]'
+        "
+      >
+        <ul class="md:flex md:gap-6 md:text-lg lg:text-2xl">
+          <li
+            @click="
+              () => {
+                stateMenu = true;
+              }
+            "
+            class="w-[100%] h-[30px] grid place-items-center uppercase font-semibold tracking-[2px]"
+          >
+            <a href="#home">Inicio</a>
+          </li>
+          <li
+            @click="
+              () => {
+                stateMenu = true;
+              }
+            "
+            class="w-[100%] h-[30px] grid place-items-center uppercase font-semibold tracking-[2px]"
+          >
+            <a href="#habilidades">Habilidades</a>
+          </li>
+          <li
+            @click="
+              () => {
+                stateMenu = true;
+              }
+            "
+            class="w-[100%] h-[30px] grid place-items-center uppercase font-semibold tracking-[2px]"
+          >
+            <a href="#projetos">Projetos</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <h1 class="md:text-xl md:tracking-[2px] lg:text-2xl">{{ nome }}</h1>
+  </header>
 </template>

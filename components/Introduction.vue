@@ -8,7 +8,7 @@ const buttonsRef = ref<HTMLElement | null>(null);
 
 onMounted(() => {
     new TypeIt("#intro-headline", {
-        speed: 50,
+        speed: 35,
         waitUntilVisible: true,
     })
         .type("Olá, meu nome é ")
@@ -22,8 +22,8 @@ onMounted(() => {
         .go();
 
     new TypeIt("#intro-description", {
-        speed: 40,
-        startDelay: 6500,
+        speed: 35,
+        startDelay: 4500,
         waitUntilVisible: true,
         afterComplete: async () => {
             showQuote.value = true;
@@ -43,24 +43,22 @@ onMounted(() => {
 
 <template>
     <article
-        class="w-[90%] h-[450px] border-b-1 mt-[100px] flex flex-col items-center text-center max-w-3xl mx-auto text-[#f4f4f5]">
+        class="w-[90%] h-[350px]  mt-[100px] flex flex-col items-center text-center max-w-3xl mx-auto text-[#f4f4f5] bg-[#13171d] md:w-[70%] md:h-[40vh] md:justify-around lg:w-[80%]" id="home">
         <h1 id="intro-headline"
             class="text-2xl sm:text-3xl md:text-4xl bg-gradient-to-r from-[#F4F4F5] to-[#4F9EFF] bg-clip-text text-transparent tracking-[2px] capitalize font-semibold mb-4">
         </h1>
 
-        <p id="intro-description" class="text-base sm:text-lg text-[#cbd5e1] mt-2 mb-6 px-2"></p>
+        <p id="intro-description" class="text-base sm:text-lg text-[#cbd5e1] mt-2 mb-6 px-2 md:text-xl"></p>
 
         <blockquote v-show="showQuote" ref="quoteRef"
-            class="italic text-sm text-gray-400 opacity-0 transition-opacity duration-700 ease-in-out">
+            class="italic text-sm text-gray-400 opacity-0 transition-opacity duration-700 ease-in-out md:text-xl">
             "Tecnologia é a ponte entre a ideia e a realização — do simples à inovação."
         </blockquote>
 
-        <section class="w-[100%]  flex justify-evenly mt-2.5 font-semibold opacity-0 transition-opacity duration-700 ease-in-out
+        <section class="w-[100%]  flex justify-evenly mt-5 font-semibold opacity-0 transition-opacity duration-700 ease-in-out
         " ref="buttonsRef">
-            <button class=" h-[50px] w-[150px] bg-[#1E293B] rounded-xl cursor-pointer
-            " v-show="showQuote">Ver Projetos</button>
-            <button class=" h-[50px] w-[150px] bg-[#1E293B] rounded-xl cursor-pointer
-            " v-show="showQuote">Baixar CV</button>
+            <button class=" h-[50px] w-[150px] bg-[#1E293B] rounded-xl cursor-pointer hover:bg-[#3b82f6]" v-show="showQuote"><a href="#projetos">Ver Projetos</a></button>
+            <button class=" h-[50px] w-[150px] bg-[#1E293B] rounded-xl cursor-pointer  hover:bg-[#3b82f6]" v-show="showQuote"><a href="https://drive.google.com/file/d/1Rg9qoQquNswv5kIE8y2G5ZzA80WeXCg0/view?usp=drive_link" target="_blank">Baixar CV</a></button>
         </section>
     </article>
 </template>
