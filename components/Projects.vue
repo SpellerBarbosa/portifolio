@@ -35,8 +35,8 @@ onMounted(()=>{
                         <img :src="`/img/${projeto.imagem}`" :alt="projeto.projeto" class="w-[98%] m-auto">
                     </li>
                     <li class="w-[calc(100%)] h-[20%] flex justify-evenly items-center">
-                        <button class="w-[calc(100%/2)] h-[100%]"><a :href="projeto.github" target="_blank">GitHub</a></button>
-                        <button class="w-[calc(100%/2)] h-[100%]"><a :href="projeto.deploy" target="_blank">deploy</a></button>
+                        <button class="w-[calc(100%/2)] h-[100%] hover:bg-[#3b82f6] cursor-pointer"><a :href="projeto.github" target="_blank">GitHub</a></button>
+                        <button class="w-[calc(100%/2)] h-[100%] hover:bg-[#3b82f6] cursor-pointer"><a :href="projeto.deploy" target="_blank">deploy</a></button>
                     </li>
                 </ul>
             </li>
