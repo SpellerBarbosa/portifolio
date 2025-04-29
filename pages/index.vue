@@ -1,6 +1,9 @@
 <script setup lang="ts">
 useHead({
-  title: "Fernando Barbosa - Portfólio de Desenvolvedor",
+  htmlAttrs: {
+    lang: 'pt-BR'
+  },
+  title: "Fernando Barbosa - Portfólio de Desenvolvedor", 
   meta: [
     // Descrição do site
     { name: "description", content: "Portfólio de Fernando Barbosa, desenvolvedor de software, apresentando projetos pessoais e profissionais nas áreas de Front-End, Back-End e Full-Stack." },

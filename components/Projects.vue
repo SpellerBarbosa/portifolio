@@ -34,9 +34,9 @@ onMounted(()=>{
                     <li class="w-[100%] border-b-1 bg-[#1e293b] border-[#1E293B]">
                         <img :src="`/img/${projeto.imagem}`" :alt="projeto.projeto" class="w-[98%] m-auto">
                     </li>
-                    <li class="w-[calc(100%)] h-[20%] flex justify-evenly items-center">
-                        <button class="w-[calc(100%/2)] h-[100%] hover:bg-[#3b82f6] cursor-pointer"><a :href="projeto.github" target="_blank">GitHub</a></button>
-                        <button class="w-[calc(100%/2)] h-[100%] hover:bg-[#3b82f6] cursor-pointer"><a :href="projeto.deploy" target="_blank">deploy</a></button>
+                    <li class="w-[100%] h-[20%] flex justify-evenly items-center">
+                        <a :href="projeto.github" class="w-[50%] h-[100%] hover:bg-[#3b82f6] cursor-pointer  grid place-items-center" target="_blank">GitHub</a>
+                        <a :href="projeto.deploy" target="_blank" class="w-[50%] h-[100%] hover:bg-[#3b82f6] cursor-pointer  grid place-items-center">deploy</a>
                     </li>
                 </ul>
             </li>

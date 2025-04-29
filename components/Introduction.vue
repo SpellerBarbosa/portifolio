@@ -11,14 +11,14 @@ onMounted(() => {
         speed: 35,
         waitUntilVisible: true,
     })
-        .type("Olá, meu nome é ")
+        .type("Olá, sou ")
         .pause(300)
-        .type("<strong class='uppercase font-bold'>Fernando</strong>")
+        .type("<strong class='uppercase font-bold'>Fernando Barbosa, </strong>")
         .pause(500)
         .break()
-        .type("e estou aprendendo sobre ")
+        .type("um desenvolvedor ")
         .pause(300)
-        .type("<strong class='uppercase font-bold'>desenvolvimento de software</strong>.")
+        .type("<strong class='uppercase font-bold'>Full Stack</strong> Em Formação.")
         .go();
 
     new TypeIt("#intro-description", {
